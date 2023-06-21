@@ -1,5 +1,13 @@
 function sumOfTwoDigitsInTheTable(arr, target) {
-    /* TODO */
+    let numObject = {};
+    for (let i = 0; i < arr.length; i++) {
+        let complement = target - arr[i];
+        if (numObject[complement] !== undefined) {
+            return true;
+        }
+        numObject[arr[i]] = arr[i];
+    }
+    return false;
 }
 
 const result1 = sumOfTwoDigitsInTheTable([1,8,3,6,9,2,5,12], 9) // true
@@ -11,6 +19,3 @@ console.log("result1 : ", result1)
 console.log("result2 : ", result2)
 console.log("result3 : ", result3)
 console.log("result4 : ", result4)
-
-/******* Sum of two digits in the table ******/
-// If two numbers in the array add up to the target, then the function returns true; otherwise, it returns false.

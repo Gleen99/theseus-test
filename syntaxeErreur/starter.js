@@ -1,5 +1,20 @@
-function isValidClosure(string) {
-
+function isValidClosure(s) {
+    let stack = [];
+    let openers = ['(', '{', '['];
+    let closers = [')', '}', ']'];
+    
+    for(let i = 0; i < s.length; i++) {
+        if(openers.includes(s[i])) {
+            stack.push(s[i]);
+        } else if(closers.includes(s[i])) {
+            let opener = openers[closers.indexOf(s[i])];
+            if(stack.length === 0 || stack.pop() !== opener) {
+                return false;
+            }
+        }
+    }
+    
+    return stack.length === 0;
 }
 
 const result1 = isValidClosure("{([{}])}") // true
@@ -13,6 +28,3 @@ console.log("result2 : ", result2)
 console.log("result3 : ", result3)
 console.log("result4 : ", result4)
 console.log("result5 : ", result5)
-
-/******* Is valid closure ******/
-// Check if the set of closures is valid.
